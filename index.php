@@ -3,12 +3,18 @@ header('Content-Type: application/json; charset=utf-8');
 // header('Content-Type: text/html; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('Asia/Seoul'); //한국 시간대로 설정
-ini_set('display_errors', '1'); //디버깅용
+// ini_set('display_errors', '1'); //디버깅용
+
+include 'ConvGridGps.php';
 
 $x = $_GET['x'];
 $y = $_GET['y'];
+
+$ConvGridGps = new ConvGridGps();
+$grid = $ConvGridGps->gpsToGRID($x, $y);
+
 $key = '안알랴줌';
-$url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey='.$key.'&pageNo=1&numOfRows=1000&dataType=JSON&base_date='.get_date().'&base_time=2300&nx='.$x.'&ny='.$y;
+$url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey='.$key.'&pageNo=1&numOfRows=1000&dataType=JSON&base_date='.get_date().'&base_time=2300&nx='.$grid['x'].'&ny='.$grid['y'];
 
 $response = get_web_text($url);
 // echo $response;
