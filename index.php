@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-// header('Content-Type: text/html; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('Asia/Seoul'); //한국 시간대로 설정
 // ini_set('display_errors', '1'); //디버깅용
